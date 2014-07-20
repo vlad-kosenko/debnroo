@@ -1,0 +1,89 @@
+<script>
+    var kTextScanProduct = '<?php echo $this->__('Please scan product barcode'); ?>';
+    var kTextNoProductToSave = '<?php echo $this->__('Nothing to save !'); ?>';
+</script>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Simple Barcode Inventory'); ?></h3></td>
+            <td align="right">
+                <?php foreach($this->getModes() as $key => $label): ?>
+                    <input type="button" id="btn-mode-<?php echo $key; ?>" class="<?php echo ($key == $this->getDefaultMode() ? 'sbi-button-selected' : 'sbi-button'); ?>" onclick="mainObj.setMode('<?php echo $key; ?>');" value="<?php echo $label; ?>">
+                <?php endforeach; ?>
+                
+                <?php if (!$this->isImmediateMode()): ?>
+                    <button onclick="mainObj.save();" class="save" style="margin-left: 100px;" type="button"><span><?php echo $this->__('Save')?></span></button>
+                <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<table border="0" width="100%">
+<tr><td width="50%">
+    <div id="div_instruction" style="font-size: 24px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+    </div>
+</td><td width="50%">
+    <div id="div_message" style="font-size: 18px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+        &nbsp;
+    </div>
+</td></tr>
+</table>
+
+<div id="div_product" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+    <center>
+        <table border="0" cellspacing="20">
+            <tr>
+                <td>
+                    <img src="" id="product_image" height="200">
+                </td>
+                <td>
+                    <center>
+                        <div id="product_name" class="sbi-product-name"></div>
+                        <div id="product_sku" class="sbi-product-sku"></div>
+                        <div id="product_stock_div" class="sbi-product-stock">
+                            <input type="button" value=" - " onclick="mainObj.decreaseCurrentProductStock();" class="sbi-btn-change-qty">
+                            <input type="textbox" id="product_stock" class="sbi-qty-field">
+                            <input type="button" value=" + " onclick="mainObj.increaseCurrentProductStock();" class="sbi-btn-change-qty">
+                            <br><input type="button" value="<?php echo $this->__('Commit'); ?>" onclick="mainObj.commitCurrentProductStock();" class="sbi-btn-commit">
+                        </div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </center>
+</div>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('History'); ?></h3></td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="div_history" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+    <table border="1" cellspacing="0" width="100%" id="table_history">
+        <tr>
+            <th class="sbi-table-header"><?php echo $this->__(''); ?></th>
+            <th class="sbi-table-header"><?php echo $this->__('Barcode'); ?></th>
+            <th class="sbi-table-header"><?php echo $this->__('Sku'); ?></th>
+            <th class="sbi-table-header"><?php echo $this->__('Name'); ?></th>
+            <th class="sbi-table-header"><?php echo $this->__('Action'); ?></th>
+            <th class="sbi-table-header"><?php echo $this->__('New stock level'); ?></th>
+        </tr>
+    </table>
+</div>
+
+<script>
+    mainObj = new SimpleBarcodeInventory('<?php echo $this->getProductInformationUrl(); ?>', '<?php echo $this->CommitProductStockUrl(); ?>', <?php echo ($this->isImmediateMode() ? ' true ' : 'false'); ?>, '<?php echo $this->getDefaultMode(); ?>');
+    mainObj.waitForScan();
+</script>
+
+<form method="POST" action="<?php echo $this->getSaveUrl(); ?>" id="form_save">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="changes" id="changes" value="">
+</form>

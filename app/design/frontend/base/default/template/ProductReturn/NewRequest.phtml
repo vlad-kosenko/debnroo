@@ -1,0 +1,65 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+
+<div class="page-title"> 
+    <h1><?php echo $this->__('Request Product Return for Order #%s', $this->getSalesOrder()->getIncrementId()) ?></h1> 
+</div> 
+
+<form method="POST" id="edit_form" name="edit_form" action="<?php echo $this->getSubmitUrl(); ?>">
+<input type="hidden" id="data[rma_id]" name="data[rma_id]" value="<?php echo $this->getRma()->getId(); ?>">
+<input type="hidden" id="data[rma_order_id]" name="data[rma_order_id]" value="<?php echo $this->getRma()->getSalesOrder()->getId(); ?>">
+<input type="hidden" id="data[rma_customer_id]" name="data[rma_customer_id]" value="<?php echo $this->getRma()->getrma_customer_id(); ?>">
+<input type="hidden" id="data[rma_ref]" name="data[rma_ref]" value="<?php echo $this->getRma()->getrma_ref(); ?>">
+<input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+
+<div class="fieldset"> 
+        <h2 class="legend"><?php echo $this->__('Main Information'); ?></h2> 
+
+        	<table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label" width="150"><?php echo $this->__('Phone'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[rma_customer_phone]" id="data[rma_customer_phone]" value="<?php echo $this->getRma()->getrma_customer_phone(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Email'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[rma_customer_email]" id="data[rma_customer_email]" value="<?php echo $this->getRma()->getrma_customer_email(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Address'); ?></td>
+                    <td class="input-ele"><?php echo $this->getCustomerAddressesAsCombo('data[rma_address_id]', $this->getRma()->getrma_address_id()); ?></td>
+                </tr>
+           </table>
+</div>
+<div class="fieldset"> 
+		<h2 class="legend"><?php echo $this->__('Products'); ?></h2> 
+		<table cellspacing="0" class="data-table" id="my-orders-table">
+			<thead> 
+                <tr class="headings"> 
+	            	<th><span class="nobr"><?php echo $this->__('Product'); ?></span></th> 
+	            	<th><span class="nobr"><?php echo $this->__('Qty'); ?></span></th> 
+	            	<th><span class="nobr"><?php echo $this->__('Reason'); ?></span></th> 
+	            	<th><span class="nobr"><?php echo $this->__('Comments'); ?></span></th> 
+	            </tr>
+	        </thead>
+	        <tbody>
+	        		<?php foreach($this->getRma()->getProducts() as $product): ?>
+	        			<?php if ($this->displayProduct($product)): ?>
+		    	        	<tr>
+	    	        			<td><?php echo $this->getProductName($product); ?></td>
+	    	        			<td class="a-center"><?php echo $this->getQtySelect('data[rp_qty_'.$product->getitem_id().']', $product->getqty_invoiced()); ?></td>
+	    	        			<td class="a-center"><?php echo $this->getReasonSelect('data[rp_reason_'.$product->getitem_id().']'); ?></td>
+	    	        			<td class="a-center"><textarea cols="60" rows="2" name="data[rp_description_<?php echo $product->getitem_id(); ?>]" id="data[rp_description_<?php echo $product->getitem_id(); ?>]"><?php echo $product->getrp_description(); ?></textarea></td>
+		    	        	</tr>
+		    	        <?php endif; ?>
+   	        		<?php endforeach; ?>
+	        </tbody>
+		</table>
+</div>
+		
+    <div class="button-set"> 
+		<center>
+		<button type="submit" title="<?php echo $this->__('Submit request'); ?>" class="button save"><span><span><?php echo $this->__('Submit request'); ?></span></span></button>  &nbsp;
+		</center>
+    </div> 
+
+</form>

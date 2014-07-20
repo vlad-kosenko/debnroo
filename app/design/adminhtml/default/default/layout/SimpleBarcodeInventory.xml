@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <simplebarcodeinventory_admin_index>
+    	
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/SimpleBarcodeInventory.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>SimpleBarcodeInventory.css</name>
+            </action>
+        </reference>
+ 		
+        <reference name="content">
+            <block type="SimpleBarcodeInventory/Main" name="simple_barcode_inventory" template="SimpleBarcodeInventory/Main.phtml">
+            </block>
+        </reference>
+        
+    </simplebarcodeinventory_admin_index>
+
+</layout>

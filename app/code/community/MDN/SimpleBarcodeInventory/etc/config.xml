@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<config>
+    
+    <modules>
+        <MDN_SimpleBarcodeInventory>
+            <version>1.0</version>
+        </MDN_SimpleBarcodeInventory>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <SimpleBarcodeInventory>
+                <use>standard</use>
+                <args>
+                    <module>MDN_SimpleBarcodeInventory</module>
+                    <frontName>SimpleBarcodeInventory</frontName>
+                </args>
+            </SimpleBarcodeInventory>
+        </routers>
+        
+        <translate>
+            <modules>
+                <MDN_SimpleBarcodeInventory>
+                    <files>
+                        <default>MDN_SimpleBarcodeInventory.csv</default>
+                    </files>
+                </MDN_SimpleBarcodeInventory>
+            </modules>
+        </translate>
+        
+    </frontend>
+        
+    <global>
+        
+        <models>
+            <SimpleBarcodeInventory>
+                <class>MDN_SimpleBarcodeInventory_Model</class>
+            </SimpleBarcodeInventory>
+        </models>
+    	
+        <blocks>
+            <SimpleBarcodeInventory>
+                <class>MDN_SimpleBarcodeInventory_Block</class>
+            </SimpleBarcodeInventory>
+        </blocks>
+    	
+
+        <helpers>
+            <SimpleBarcodeInventory>
+                <class>MDN_SimpleBarcodeInventory_Helper</class>
+            </SimpleBarcodeInventory>
+        </helpers>
+        
+    </global>
+        
+    <adminhtml>
+    
+        <menu>
+            <catalog>
+                <children>
+                    <simple_barcode_inventory translate="title" module="SimpleBarcodeInventory">
+                        <title>Barcode Inventory</title>
+                        <action>SimpleBarcodeInventory/Admin</action>
+                        <sort_order>90</sort_order>
+                    </simple_barcode_inventory>
+                </children>
+            </catalog>
+        </menu>
+        
+        <translate>
+            <modules>
+                <MDN_SimpleBarcodeInventory>
+                    <files>
+                        <default>MDN_SimpleBarcodeInventory.csv</default>
+                    </files>
+                </MDN_SimpleBarcodeInventory>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <SimpleBarcodeInventory>
+                    <file>SimpleBarcodeInventory.xml</file>
+                </SimpleBarcodeInventory>
+            </updates>
+        </layout>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <simple_barcode_inventory module="SimpleBarcodeInventory">
+                                            <title>SimpleBarcodeInventory</title>
+                                        </simple_barcode_inventory>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        <catalog>
+                            <children>
+                                <simple_barcode_inventory module="SimpleBarcodeInventory">
+                                    <title>SimpleBarcodeInventory</title>
+                                </simple_barcode_inventory>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <SimpleBarcodeInventory>
+                <use>admin</use>
+                <args>
+                    <module>MDN_SimpleBarcodeInventory</module>
+                    <frontName>SimpleBarcodeInventory</frontName>
+                </args>
+            </SimpleBarcodeInventory>
+        </routers>
+    </admin>
+        
+    <default>
+        <simple_barcode_inventory>
+            <general>
+                <save_mode>immediate</save_mode>
+                <default_mode>manual</default_mode>
+            </general>
+        </simple_barcode_inventory>
+    </default>
+                    
+</config>

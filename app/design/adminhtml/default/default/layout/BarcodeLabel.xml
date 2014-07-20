@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>barcode_label</name>
+                <block>BarcodeLabel/Adminhtml_Catalog_Product_Edit_Tab_BarcodeLabel</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+</layout>

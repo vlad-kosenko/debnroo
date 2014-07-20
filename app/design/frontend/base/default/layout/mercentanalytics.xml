@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+<!--
+Default layout, loads most of the pages
+-->
+
+    <default>
+        <!-- Mercent_Analytics -->
+        <reference name="before_body_end">
+            <block type="mercentanalytics/ma" name="mercent_analytics" as="mercent_analytics" />
+        </reference>
+    </default>
+
+	 <!-- <catalog_product_view>
+		<reference name="before_body_end">
+			<block type="core/template" name="product_tracking" as="product_tracking" after="mercent_analytics" template="analytics/productview.phtml" />
+		 </reference>
+	</catalog_product_view>-->
+</layout>

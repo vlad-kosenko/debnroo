@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <simple_barcode_inventory translate="label" module="SimpleBarcodeInventory">
+            <label>Simple barcode inventory</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <barcode_attribute>
+                            <label>Product barcode attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>SimpleBarcodeInventory/System_Config_ProductAttribute</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </barcode_attribute>
+                        <default_mode>
+                            <label>Default mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>SimpleBarcodeInventory/System_Config_Mode</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Select the default mode applied in main screen</comment>
+                        </default_mode>
+                        <save_mode>
+                            <label>Save mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>SimpleBarcodeInventory/System_Config_SaveMode</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If immediate, stock level is saved each time you change it (cause delay between to barcode scans)</comment>
+                        </save_mode>
+                    </fields>
+                </general>
+            </groups>
+        </simple_barcode_inventory>
+    </sections>
+</config>           

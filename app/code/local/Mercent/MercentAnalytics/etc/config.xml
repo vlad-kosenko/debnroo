@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mercent
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Mercent
+ * @package    Mercent_MercentAnalytics
+*/
+-->
+<config>
+    <modules>
+        <Mercent_MercentAnalytics>
+            <version>3.2.0</version>
+        </Mercent_MercentAnalytics>
+    </modules>
+
+    <global>
+        <models>
+            <mercentanalytics><class>Mercent_MercentAnalytics_Model</class></mercentanalytics>
+        </models>
+        <blocks>
+            <mercentanalytics><class>Mercent_MercentAnalytics_Block</class></mercentanalytics>
+        </blocks>
+        <helpers>
+            <mercentanalytics>
+                <class>Mercent_MercentAnalytics_Helper</class>
+            </mercentanalytics>
+        </helpers>
+    </global>
+
+    <frontend>
+        <translate>
+            <modules>
+                <Mercent_MercentAnalytics>
+                    <files>
+                        <default>Mercent_MercentAnalytics.csv</default>
+                    </files>
+                </Mercent_MercentAnalytics>
+            </modules>
+        </translate>
+        <events>
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <mercentanalytics_order_success>
+                        <type>singleton</type>
+                        <class>mercentanalytics/observer</class>
+                        <method>order_success_page_view</method>
+                    </mercentanalytics_order_success>
+                </observers>
+            </checkout_onepage_controller_success_action>
+            <checkout_multishipping_controller_success_action>
+                <observers>
+                    <mercentanalytics_order_success>
+                        <type>singleton</type>
+                        <class>mercentanalytics/observer</class>
+                        <method>order_success_page_view</method>
+                    </mercentanalytics_order_success>
+                </observers>
+            </checkout_multishipping_controller_success_action>
+        </events>
+        <layout>
+            <updates>
+                <mercentanalytics>
+                    <file>mercentanalytics.xml</file>
+                </mercentanalytics>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Mercent_MercentAnalytics>
+                    <files>
+                        <default>Mercent_MercentAnalytics.csv</default>
+                    </files>
+                </Mercent_MercentAnalytics>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mercent translate="title" module="mercentanalytics">
+                                            <title>Mercent</title>
+                                        </mercent>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

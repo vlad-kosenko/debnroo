@@ -1,0 +1,47 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title"> 
+    <h1><?php echo $this->__('Select Order for Product Return') ?></h1> 
+</div> 
+
+<?php if($this->getList()->getSize()): ?>
+<table cellspacing="0" class="data-table" id="my-orders-table">
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Order #') ?></th>
+            <th><?php echo $this->__('Date') ?></th>
+            <th><?php echo $this->__('Ship to') ?></th>
+            <th><?php echo $this->__('Order Total') ?></th>
+            <th><?php echo $this->__('Order Status') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $_odd = ''; ?>
+		<?php $_NbOrderAvailable = 0; ?>
+        <?php foreach ($this->getList() as $_order): ?>
+			<?php 
+				if($this->IsOrderAvailable($_order) == true): 
+					$_NbOrderAvailable++;
+				?>
+	            <tr>
+	                <td><?php echo $_order->getRealOrderId() ?></td>
+	                <td><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></td>
+	                <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+	                <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+	                <td><em><?php echo $_order->getStatusLabel() ?></em></td>
+	                <td class="a-center"><a href="<?php echo $this->getSelectUrl($_order); ?>"><?php echo $this->__('Select'); ?></a></td>
+	            </tr>
+			<?php endif; ?>
+        <?php endforeach; ?>
+		
+		<?php if($_NbOrderAvailable == 0): ?>
+			 <tr><td colspan="6" style="text-align:center;"><p><?php echo $this->__('You have no orders available for product return.'); ?></p></td></tr>
+		<?php endif; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table')</script>
+
+<?php else: ?>
+    <p><?php echo $this->__('You have no orders availabe for product returns.') ?></p>
+<?php endif ?>

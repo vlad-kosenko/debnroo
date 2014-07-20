@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_BarcodeLabel>
+            <version>1.9</version>
+        </MDN_BarcodeLabel>
+    </modules>
+
+    <global>
+
+        <helpers>
+            <BarcodeLabel>
+                <class>MDN_BarcodeLabel_Helper</class>
+            </BarcodeLabel>
+        </helpers>
+
+        <blocks>
+            <BarcodeLabel>
+                <class>MDN_BarcodeLabel_Block</class>
+            </BarcodeLabel>
+            
+            
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_list>MDN_BarcodeLabel_Block_Product_List</catalog_product_list>
+                </rewrite>
+            </adminhtml>
+    
+        </blocks>
+
+        <models>
+            <BarcodeLabel>
+                <class>MDN_BarcodeLabel_Model</class>
+            </BarcodeLabel>
+            
+            <AdvancedStock>
+                <rewrite>
+                    <Pdf_BarcodeLabels>MDN_BarcodeLabel_Model_Pdf_Labels</Pdf_BarcodeLabels>
+                </rewrite>
+            </AdvancedStock>
+            
+        </models>
+
+        <resources>
+            <BarcodeLabel_setup>
+                <setup>
+                    <module>MDN_BarcodeLabel</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </BarcodeLabel_setup>
+            <BarcodeLabel_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </BarcodeLabel_write>
+            <BarcodeLabel_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </BarcodeLabel_read>
+        </resources>
+        
+        <events>
+            <model_save_after>
+                <observers>
+                    <BarcodeLabel>
+                        <type>singleton</type>
+                        <class>BarcodeLabel/observer</class>
+                        <method>model_save_after</method>
+                    </BarcodeLabel>
+                </observers>
+            </model_save_after>
+        </events>
+    </global>
+
+    <adminhtml>
+
+        <translate>
+            <modules>
+                <MDN_BarcodeLabel>
+                    <files>
+                        <default>MDN_BarcodeLabel.csv</default>
+                    </files>
+                </MDN_BarcodeLabel>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <BarcodeLabel>
+                    <file>BarcodeLabel.xml</file>
+                </BarcodeLabel>
+            </updates>
+        </layout>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <barcodelabel module="BarcodeLabel">
+                                            <title>Barcode label</title>
+                                        </barcodelabel>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        
+        <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                        <BarcodeLabel_core_block_abstract_prepare_layout_before>
+                            <class>BarcodeLabel/observer</class>
+                            <method>addMassAction</method>
+                        </BarcodeLabel_core_block_abstract_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+        
+    </adminhtml>
+
+    <frontend>
+        <secure_url>
+            <BarcodeLabel>/BarcodeLabel/</BarcodeLabel>
+        </secure_url>
+        <routers>
+            <BarcodeLabel>
+                <use>standard</use>
+                <args>
+                    <module>MDN_BarcodeLabel</module>
+                    <frontName>BarcodeLabel</frontName>
+                </args>
+            </BarcodeLabel>
+        </routers>
+    </frontend>
+
+    <admin>
+        <routers>
+            <BarcodeLabel>
+                <use>admin</use>
+                <args>
+                    <module>MDN_BarcodeLabel</module>
+                    <frontName>BarcodeLabel</frontName>
+                </args>
+            </BarcodeLabel>
+        </routers>
+    </admin>
+
+    <default>
+        <barcodelabel>
+            <general>
+                 <standard>Code128</standard>
+            </general>
+            <label>
+                <font>LinLibertineC_Re-2.8.0.ttf</font>
+            </label>
+            <barcode>
+                <print>1</print>
+                <position>1.8, 0.7, 2.6, 1.2</position>
+            </barcode>
+            <name>
+                <print>1</print>
+                <font_size>11</font_size>
+                <position>0.1 , 0.6, 3, 0</position>
+            </name>
+            <sku>
+                <print>1</print>
+                <font_size>11</font_size>
+                <position>0.1 , 0.3, 2, 0</position>
+            </sku>
+            <manufacturer>
+                <print>1</print>
+                <font_size>11</font_size>
+                <position>2.1 , 0.3, 2, 0</position>
+            </manufacturer>
+            <price>
+                <print>1</print>
+                <font_size>11</font_size>
+                <position>3.5 , 0.6, 0, 0</position>
+                <currency>EUR</currency>
+            </price>*
+            <logo>
+                <print>0</print>
+                <position>0.1 , 0.8, 1, 1</position>
+            </logo>
+            <product_image>
+                <print>0</print>
+                <position>0.1 , 1.2, 1, 1</position>
+            </product_image>
+            <pdf>
+                <paper_width>8</paper_width>
+                <paper_height>3.5</paper_height>
+                <vertical_inter_margin>0</vertical_inter_margin>
+                <horizontal_inter_margin>0</horizontal_inter_margin>
+                <labels_per_row>1</labels_per_row>
+                <top_margin>0</top_margin>
+                <left_margin>0</left_margin>
+                <right_margin>0</right_margin>
+                <bottom_margin>0</bottom_margin>
+                <row_count>1</row_count>
+            </pdf>
+
+        </barcodelabel>
+    </default>
+
+</config>

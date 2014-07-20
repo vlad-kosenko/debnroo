@@ -1,0 +1,78 @@
+.sbi-button
+{ 
+    background-color:#cccccc; 
+    padding: 3px;
+    color:black;
+}
+
+.sbi-button-selected
+{ 
+    background-color:#FF9900; 
+    padding: 3px;
+    color:black;
+    font-weight: bold;
+}
+
+.sbi-btn-change-qty
+{
+    background-color:#FF9900; 
+    padding: 3px;
+    color:black;
+    font-weight: bold;
+    font-size: 24px;
+    width: 50px;
+}
+
+.sbi-product-name
+{
+    display: block;
+    font-size: 32px;
+    padding: 10px;
+}
+
+.sbi-product-sku
+{
+    display: block;
+    font-style: italic;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.sbi-product-stock
+{
+    display: block;
+    padding: 10px;
+}
+
+.sbi-qty-field
+{
+    width: 100px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.sbi-btn-commit
+{
+    background-color:#FF9900; 
+    padding: 10px;
+    color:black;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.sbi-table-header
+{
+    background-color:#444444; 
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.sbi-table-cell
+{
+    padding-top: 5px;
+    font-size: 18px;
+    text-align: center;
+}

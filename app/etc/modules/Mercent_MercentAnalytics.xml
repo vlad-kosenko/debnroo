@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mercent_MercentAnalytics>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Mercent_MercentAnalytics>        
+    </modules>
+</config>
